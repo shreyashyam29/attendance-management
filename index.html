@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Internship Student Attendance Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #e6f7ff; /* Light blue background */
+            color: #003399; /* Deep blue text */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #003399;
+        }
+
+        .container {
+            display: grid;
+            gap: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .card {
+            background: #f0f9ff; /* Light bluish card background */
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            border: 1px solid #b3d9ff; /* Soft border */
+        }
+
+        input,
+        button,
+        select {
+            padding: 12px;
+            margin-top: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        button {
+            background: #003399; /* Deep blue button */
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #ff8000; /* Orange hover */
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 18px;
+            color: #003399;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px; /* spacing between cells */
+        }
+
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        thead {
+            background-color: #d6f0ff;
+        }
+
+        td img {
+            object-fit: cover;
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+        }
+
+        label {
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px; /* spacing between cells */
+        }
+
+        input,
+        select {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Internship Students Attendance Management System</h1>
+
+    <div class="container">
+        <div class="card">
+            <div class="section-title">🔐 Admin Login</div>
+            <label for="adminPass">Admin Password</label>
+            <input type="password" id="adminPass">
+            <button onclick="setAdmin()">Login as Admin</button>
+        </div>
+
+        <div class="card">
+            <div class="section-title">👩‍🎓 Add Student</div>
+            <form action="add_student.php" method="POST" enctype="multipart/form-data">
+                <div class="grid">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div>
+                        <label for="college">College Name</label>
+                        <input type="text" id="college" name="college" required>
+                    </div>
+                    <div>
+                        <label for="usn">USN</label>
+                        <input type="text" id="usn" name="usn" required>
+                    </div>
+                    <div>
+                        <label for="contact">Contact No</label>
+                        <input type="text" id="contact" name="contact" required>
+                    </div>
+                    <div>
+                        <label for="project">Project Title</label>
+                        <input type="text" id="project" name="project" required>
+                    </div>
+                    <div>
+                        <label for="duration">Course Duration</label>
+                        <input type="text" id="duration" name="duration" required>
+                    </div>
+                    <div>
+                        <label for="report_status">Report Status</label>
+                        <select id="report_status" name="report_status" required>
+                            <option value="" disabled selected>Select Status</option>
+                            <option value="yes">Report Submitted</option>
+                            <option value="no">Not Submitted</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="photo">Photo (.jpg only)</label>
+                        <input type="file" id="photo" name="photo" accept=".jpg,image/jpeg" required>
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="section-title">📅 Mark Attendance</div>
+            <div class="grid">
+                <div>
+                    <label for="att_usn">USN</label>
+                    <input type="text" id="att_usn">
+                </div>
+                <div>
+                    <label for="status">Status</label>
+                    <select id="status">
+                        <option value="present">Present</option>
+                        <option value="absent">Absent</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="login">Login Time</label>
+                    <input type="datetime-local" id="login">
+                </div>
+            </div>
+            <button onclick="markAttendance()">Mark Attendance</button>
+        </div>
+
+        <div class="card">
+            <div class="section-title">📊 View Attendance</div>
+            <div class="grid">
+                <div>
+                    <label for="from">From Date</label>
+                    <input type="date" id="from">
+                </div>
+                <div>
+                    <label for="to">To Date</label>
+                    <input type="date" id="to">
+                </div>
+                <div>
+                    <label for="view_usn">USN (Optional)</label>
+                    <input type="text" id="view_usn">
+                </div>
+            </div>
+
+            <button onclick="viewData()">View</button>
+            <button onclick="exportData()">Export to Excel</button>
+
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

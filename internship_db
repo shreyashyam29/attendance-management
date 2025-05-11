@@ -1,0 +1,27 @@
+CREATE DATABASE IF NOT EXISTS internship_db;
+USE internship_db;
+
+-- Create students table
+CREATE TABLE IF NOT EXISTS students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  college VARCHAR(100) NOT NULL,
+  usn VARCHAR(20) UNIQUE NOT NULL,
+  contact VARCHAR(15),
+  project VARCHAR(255),
+  duration VARCHAR(50),
+  report_status ENUM('yes','no'),
+  photo_path VARCHAR(255)  -- ✅ New column for photo
+);
+
+-- Create attendance table
+CREATE TABLE IF NOT EXISTS attendance (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  usn VARCHAR(20) NOT NULL,
+  status ENUM('present','absent') NOT NULL,
+  login_time DATETIME NOT NULL
+);
+
+-- Optional indexes for performance
+CREATE INDEX idx_attendance_usn ON attendance(usn);
+CREATE INDEX idx_attendance_date ON attendance(login_time);
