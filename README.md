@@ -5,7 +5,7 @@ This is a PHP-based Attendance Management System that runs offline using the XAM
 ##  Key Features
 
 -  **Offline Mode**: Fully functional without internet using XAMPP.
--  **Admin Login System**: Only authenticated admins can access the dashboard and manage records.
+-  **Admin Login System**: Only authenticated admins can access contact details.
 -  **Student Management**: Add, update, and delete student data with contact details.
 -  **Attendance Tracking**: Mark attendance by date with just a few clicks.
 -  **Visual Reports**: View bar charts showing student-wise attendance records.
