@@ -29,21 +29,20 @@ This is a PHP-based Attendance Management System that runs offline using the XAM
 5. Visit `http://localhost/project` in your browser
 6. Login using your admin credentials (defined in the database)
 
-```markdown
-## Project Structure
+##  Project Structure
 
 ```
-
 project/
 ├── index.html
 ├── login.php
-├── add\_student.php
-├── mark\_attendance.php
-├── view\_attendance.php
-├── export\_attendance.php
-├── admin\_dashboard.php
+├── add_student.php
+├── mark_attendance.php
+├── view_attendance.php
+├── export_attendance.php
+├── admin_dashboard.php
 ├── script.js
 └── uploads/
+```
 
 
 ## Admin Dashboard Includes
